@@ -2,13 +2,20 @@ package com.entgra.Task_02.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+//import java.util.List;
+
+
 @Data
 @Entity
 public class Customer {
     @Id
-    private String customer_id;
-    private Integer user_id;
+    private Integer customer_id;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_user_id")
+    private User users;
+
+
+
 
 }

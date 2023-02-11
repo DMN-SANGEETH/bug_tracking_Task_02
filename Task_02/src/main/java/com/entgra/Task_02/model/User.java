@@ -4,6 +4,8 @@ import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
 @Data
 @Entity
 public class User {
@@ -13,4 +15,8 @@ public class User {
     private String email;
     private String password;
     private String phone_number;
+    @OneToOne(mappedBy = "users")
+    private Customer customers;
+    @OneToOne(mappedBy = "users")
+    private SupportStaff supportStaffs;
 }

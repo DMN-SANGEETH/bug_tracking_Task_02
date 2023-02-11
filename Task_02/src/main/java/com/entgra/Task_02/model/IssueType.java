@@ -2,8 +2,9 @@ package com.entgra.Task_02.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
+
 @Data
 @Entity
 public class IssueType {
@@ -11,6 +12,8 @@ public class IssueType {
     private Integer issue_type_id;
     private String issue_type_name;
     private String description;
-    private Integer project_id;
+
+//    @ManyToMany(mappedBy = "issueTypes")
+//    private List<Project> projects;
 
 }

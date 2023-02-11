@@ -2,8 +2,9 @@ package com.entgra.Task_02.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
+
 @Data
 @Entity
 public class Issue {
@@ -11,8 +12,19 @@ public class Issue {
     private Integer issue_id;
     private String title;
     private String description;
-    private Integer customer_id;
-    private Integer staff_id;
-    private Integer project_type_id;
-    private Integer issue_type_id;
+//    @OneToMany(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "fk_customer_id", referencedColumnName = "customer_id")
+//    private List<Customer> customers;
+//
+//    @OneToMany(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "fk_staff_id", referencedColumnName = "staff_id")
+//    private List<SupportStaff> supportStaffs;
+//
+//    @OneToMany(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "fk_project_type_id", referencedColumnName = "project_type_id")
+//    private List<Project> projects;
+//
+//    @OneToMany(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "fk_issue_type_id", referencedColumnName = "issue_type_id")
+//    private List<Issue> issues;
 }

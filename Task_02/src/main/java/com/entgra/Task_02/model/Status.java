@@ -2,14 +2,18 @@ package com.entgra.Task_02.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
+
 @Data
 @Entity
 public class Status {
     @Id
     private Integer status_id;
     private String status_name;
-    private Integer issue_id;
+
+//    @OneToMany(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "fk_issue_id", referencedColumnName = "issue_id")
+//    private List<Issue> issues;
 }
 
