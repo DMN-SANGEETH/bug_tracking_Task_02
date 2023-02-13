@@ -8,6 +8,7 @@ import javax.persistence.*;
 @Entity
 public class SupportStaff {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer staff_id;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_user_id")
