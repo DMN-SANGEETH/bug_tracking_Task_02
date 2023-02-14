@@ -13,8 +13,9 @@ public class Status {
     private Integer status_id;
     private String status_name;
     private String description;
-
-    private Integer issue_id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_issue_id")
+    private Issue issues;
 
 }
 

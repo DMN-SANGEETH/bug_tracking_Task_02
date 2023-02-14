@@ -15,26 +15,16 @@ public class Issue {
     private String title;
     private String description;
     private String report_date;
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_issue_type_id")
-    private IssueType issuetype;
-    private int customer_id;
-    private int staff_id;
+    private IssueType issueType;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_customer_id")
+    private Customer customers;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_staff_id")
+    private SupportStaff supportStaffs;
+    @OneToMany(mappedBy = "issues", cascade = CascadeType.ALL)
+    private List<Status> statuses;
 
-
-//    @OneToMany(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "fk_customer_id", referencedColumnName = "customer_id")
-//    private List<Customer> customers;
-//
-//    @OneToMany(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "fk_staff_id", referencedColumnName = "staff_id")
-//    private List<SupportStaff> supportStaffs;
-//
-//    @OneToMany(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "fk_project_type_id", referencedColumnName = "project_type_id")
-//    private List<Project> projects;
-//
-//    @OneToMany(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "fk_issue_type_id", referencedColumnName = "issue_type_id")
-//    private List<Issue> issues;
 }
