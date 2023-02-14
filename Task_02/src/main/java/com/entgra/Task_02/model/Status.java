@@ -12,9 +12,9 @@ public class Status {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer status_id;
     private String status_name;
+    private String description;
 
-//    @OneToMany(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "fk_issue_id", referencedColumnName = "issue_id")
-//    private List<Issue> issues;
+    private Integer issue_id;
+
 }
 

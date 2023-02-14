@@ -10,9 +10,18 @@ import java.util.List;
 public class Issue {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer issue_id;
+    private int issue_id;
+    private String summary;
     private String title;
     private String description;
+    private String report_date;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_issue_type_id")
+    private IssueType issuetype;
+    private int customer_id;
+    private int staff_id;
+
+
 //    @OneToMany(cascade = CascadeType.ALL)
 //    @JoinColumn(name = "fk_customer_id", referencedColumnName = "customer_id")
 //    private List<Customer> customers;

@@ -9,9 +9,10 @@ import javax.persistence.*;
 public class SupportStaff {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer staff_id;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk_user_id")
-    private User users;
+    private int staff_id;
+    private String username;
+    private String email;
+    private String password;
+    private int phone_number;
 
 }

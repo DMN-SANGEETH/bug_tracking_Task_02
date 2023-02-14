@@ -11,10 +11,7 @@ public class IssueType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer issue_type_id;
-    private String issue_type_name;
+    private String name;
     private String description;
-
-//    @ManyToMany(mappedBy = "issueTypes")
-//    private List<Project> projects;
 
 }
