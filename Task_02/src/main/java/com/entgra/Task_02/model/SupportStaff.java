@@ -26,7 +26,5 @@ public class SupportStaff {
     @Type(type = "json")
     @Column(columnDefinition = "json")
     private ArrayList phone_number;
-    @OneToMany(mappedBy = "supportStaffs", cascade = CascadeType.ALL)
-    private List<Issue> issues;
 
 }

@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class IssueTypeDTO {
-    private Integer issue_type_id;
+    private int issue_type_id;
     private String name;
     private String description;
 }

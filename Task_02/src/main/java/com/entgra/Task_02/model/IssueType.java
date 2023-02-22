@@ -13,7 +13,5 @@ public class IssueType {
     private Integer issue_type_id;
     private String name;
     private String description;
-    @OneToMany(mappedBy = "issueType", cascade = CascadeType.ALL)
-    private List<Issue> issues;
 
 }

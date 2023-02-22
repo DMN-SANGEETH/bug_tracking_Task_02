@@ -3,8 +3,10 @@ package com.entgra.Task_02.controler;
 import com.entgra.Task_02.dto.CustomerDTO;
 
 import com.entgra.Task_02.service.CustomerService;
+import com.entgra.Task_02.util.StandardResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,21 +23,36 @@ public class CustomerController {
         customerService.addCustomer(customerDTO);
         return "saved";
     }
+//    @GetMapping("/getAllData")
+//    public List<CustomerDTO> getAllData(){
+//        List<CustomerDTO> customerDTOList = customerService.getAllData();
+//        return customerDTOList;
+//
+//    }
     @GetMapping("/getAllData")
-    public List<CustomerDTO> getAllData(){
+    public ResponseEntity<StandardResponse> getAllData(){
         List<CustomerDTO> customerDTOList = customerService.getAllData();
-        return customerDTOList;
+        return new ResponseEntity<StandardResponse>(
+                new StandardResponse(200,"Success fully recived",customerDTOList),
+                HttpStatus.OK
+        );
 
     }
     @PutMapping("/updateCustomer")
-    public CustomerDTO updateCustomer(@RequestBody CustomerDTO customerDTO){
-        CustomerDTO customerDTOup = customerService.updateCustomer(customerDTO);
-        return customerDTOup;
+    public ResponseEntity<StandardResponse> updateCustomer(@RequestBody CustomerDTO customerDTO){
+        String customerDTOup = customerService.updateCustomer(customerDTO);
+        return new ResponseEntity<StandardResponse>(
+                new StandardResponse(200,"Success fully recived",customerDTOup),
+                HttpStatus.CREATED);
     }
-//    @GetMapping("/getCustomer/{id}")
-//    public String getCustomer(@PathVariable int customerID){
-//        return customerService.getCustomer(customerID);
-//    }
+    @GetMapping("/getCustomer/{id}")
+    public ResponseEntity<StandardResponse> getCustomer(@PathVariable(value = "id") int customerID){
+        CustomerDTO customerDTO = customerService.getCustomer(customerID);
+        return new ResponseEntity<StandardResponse>(
+                new StandardResponse(200,"Success fully recived",customerDTO),
+                HttpStatus.OK
+                );
+    }
     @DeleteMapping(path ="/deleteCustomer/{id}")
     public String deleteCustomer(@PathVariable(value = "id") int customerID){
         String delete = customerService.deleteCustomer(customerID);

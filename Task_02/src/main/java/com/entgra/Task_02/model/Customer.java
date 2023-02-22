@@ -16,8 +16,6 @@ public class Customer {
     private String username;
     private String email;
     private String password;
-    @OneToMany(mappedBy = "customers", cascade = CascadeType.ALL)
-    private List<Issue> issues;
 
     public Customer() {
 

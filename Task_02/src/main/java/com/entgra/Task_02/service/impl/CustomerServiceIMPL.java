@@ -21,13 +21,14 @@ public class CustomerServiceIMPL implements CustomerService {
     private CustomerRepository customerRepository;
     @Autowired
     private ModelMapper modelMapper;
+
     @Override
     public String addCustomer(CustomerDTO customerDTO) {
         Customer customer = modelMapper.map(customerDTO, Customer.class);
-        if (!customerRepository.existsById(customer.getCustomer_id())){
+        if (!customerRepository.existsById(customer.getCustomer_id())) {
             customerRepository.save(customer);
             return "Save successfuly";
-        }else {
+        } else {
             throw new DuplicateKeyException("Allreday added");
         }
     }
@@ -35,10 +36,10 @@ public class CustomerServiceIMPL implements CustomerService {
 
     @Override
     public String deleteCustomer(int customerID) {
-        if(customerRepository.existsById(customerID)){
+        if (customerRepository.existsById(customerID)) {
             customerRepository.deleteById(customerID);
-            return "Succesfully deleted"+ customerID;
-        }else {
+            return "Succesfully deleted" + customerID;
+        } else {
             throw new RuntimeException("No customer found");
         }
     }
@@ -47,7 +48,8 @@ public class CustomerServiceIMPL implements CustomerService {
     public List<CustomerDTO> getAllData() {
         List<Customer> customerList = customerRepository.findAll();
         List<CustomerDTO> customerDTOList = customerList.stream()
-                .map(customer -> {CustomerDTO customerDTO =modelMapper.map(customer, CustomerDTO.class);
+                .map(customer -> {
+                    CustomerDTO customerDTO = modelMapper.map(customer, CustomerDTO.class);
                     customerDTO.setCustomer_id(customer.getCustomer_id());
                     return customerDTO;
                 })
@@ -57,15 +59,22 @@ public class CustomerServiceIMPL implements CustomerService {
     }
 
     @Override
-    public CustomerDTO updateCustomer(CustomerDTO customerDTO) {
-        return null;
+    public String updateCustomer(CustomerDTO customerDTO) {
+        if(customerRepository.existsById(customerDTO.getCustomer_id())){
+            Customer customer = modelMapper.map(customerDTO,Customer.class);
+            customerRepository.save(customer);
+            return "Success ful";
+        } else {
+            throw new RuntimeException("No Id");
+        }
     }
 
     @Override
     public List<CustomerDTO> getAllCustomerByStatus(String name) {
         List<Customer> getStatusCustomer = customerRepository.findAllByUsername(name);
         List<CustomerDTO> customerDTONameList = getStatusCustomer.stream()
-                .map(customer -> {CustomerDTO customerDTO =modelMapper.map(customer, CustomerDTO.class);
+                .map(customer -> {
+                    CustomerDTO customerDTO = modelMapper.map(customer, CustomerDTO.class);
                     customerDTO.setCustomer_id(customer.getCustomer_id());
                     return customerDTO;
                 })
@@ -73,6 +82,23 @@ public class CustomerServiceIMPL implements CustomerService {
 //        Customer allCustomer = modelMapper.map(Customer, customerDTO.class);
         return customerDTONameList;
 
+    }
+
+    @Override
+    public CustomerDTO getCustomer(int customerID) {
+        if (customerRepository.existsById(customerID)) {
+            Customer customer = customerRepository.getReferenceById(customerID);
+            CustomerDTO customerDTO = new CustomerDTO(
+                    customer.getCustomer_id(),
+                    customer.getUsername(),
+                    customer.getEmail(),
+                    customer.getPassword()
+            );
+
+            return customerDTO;
+        }else {
+            throw new RuntimeException("No Customers");
+        }
     }
 
 
