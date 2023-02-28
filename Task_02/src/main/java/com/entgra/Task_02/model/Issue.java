@@ -15,17 +15,19 @@ public class Issue {
     private String title;
     private String description;
     private String report_date;
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "fk_issue_type_id", referencedColumnName = "issue_type_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_issue_type_id")
     private IssueType fk_issue_type_id;
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "fk_customer_id", referencedColumnName = "customer_id")
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_customer_id")
     private Customer fk_customer_id;
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "fk_staff_id", referencedColumnName = "staff_id")
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_staff_id")
     private SupportStaff fk_staff_id;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk_status_id", referencedColumnName = "status_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_status_id")
     private Status fk_status_id;
 
     public int getIssue_id() {
@@ -98,20 +100,5 @@ public class Issue {
 
     public void setFk_status_id(Status fk_status_id) {
         this.fk_status_id = fk_status_id;
-    }
-
-    public Issue(int issue_id, String summary, String title, String description, String report_date, IssueType fk_issue_type_id, Customer fk_customer_id, SupportStaff fk_staff_id, Status fk_status_id) {
-        this.issue_id = issue_id;
-        this.summary = summary;
-        this.title = title;
-        this.description = description;
-        this.report_date = report_date;
-        this.fk_issue_type_id = fk_issue_type_id;
-        this.fk_customer_id = fk_customer_id;
-        this.fk_staff_id = fk_staff_id;
-        this.fk_status_id = fk_status_id;
-    }
-
-    public Issue() {
     }
 }

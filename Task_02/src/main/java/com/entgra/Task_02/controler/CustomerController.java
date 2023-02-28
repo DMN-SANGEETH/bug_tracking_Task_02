@@ -13,23 +13,17 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("api/v1/customer")
+@RequestMapping("api/v1/customers")
 @CrossOrigin
 public class CustomerController {
     @Autowired
     public CustomerService customerService;
-    @PostMapping("/addCustomer")
+    @PostMapping("/customer")
     public String addCustomer(@RequestBody CustomerDTO customerDTO){
         customerService.addCustomer(customerDTO);
         return "saved";
     }
-//    @GetMapping("/getAllData")
-//    public List<CustomerDTO> getAllData(){
-//        List<CustomerDTO> customerDTOList = customerService.getAllData();
-//        return customerDTOList;
-//
-//    }
-    @GetMapping("/getAllData")
+    @GetMapping("/all-data")
     public ResponseEntity<StandardResponse> getAllData(){
         List<CustomerDTO> customerDTOList = customerService.getAllData();
         return new ResponseEntity<StandardResponse>(
@@ -38,14 +32,14 @@ public class CustomerController {
         );
 
     }
-    @PutMapping("/updateCustomer")
+    @PutMapping("/update-customer")
     public ResponseEntity<StandardResponse> updateCustomer(@RequestBody CustomerDTO customerDTO){
         String customerDTOup = customerService.updateCustomer(customerDTO);
         return new ResponseEntity<StandardResponse>(
                 new StandardResponse(200,"Success fully recived",customerDTOup),
                 HttpStatus.CREATED);
     }
-    @GetMapping("/getCustomer/{id}")
+    @GetMapping("/customer/{id}")
     public ResponseEntity<StandardResponse> getCustomer(@PathVariable(value = "id") int customerID){
         CustomerDTO customerDTO = customerService.getCustomer(customerID);
         return new ResponseEntity<StandardResponse>(
@@ -55,13 +49,11 @@ public class CustomerController {
     }
     @DeleteMapping(path ="/deleteCustomer/{id}")
     public String deleteCustomer(@PathVariable(value = "id") int customerID){
-        String delete = customerService.deleteCustomer(customerID);
-        return delete;
+        return customerService.deleteCustomer(customerID);
     }
     @GetMapping("/getAllCustomerBy/{Status}")
     public List<CustomerDTO> getAllCustomerBy(@PathVariable(value = "Status") String name){
-        List<CustomerDTO> customerDTONameList = customerService.getAllCustomerByStatus(name);
-        return  customerDTONameList;
+        return customerService.getAllCustomerByStatus(name);
     }
 
 }

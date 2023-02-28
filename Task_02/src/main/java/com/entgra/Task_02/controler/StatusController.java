@@ -1,7 +1,6 @@
 package com.entgra.Task_02.controler;
 
-import com.entgra.Task_02.dao.StatusRepository;
-import com.entgra.Task_02.dto.request.StatusRequestDTO;
+//import com.entgra.Task_02.dto.request.StatusRequestDto;
 import com.entgra.Task_02.service.StatusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,9 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class StatusController {
     @Autowired
     private StatusService statusService;
-    @PutMapping("/updateStat")
-    public StatusRequestDTO updateStatus(StatusRequestDTO statusRequestDTO){
-        StatusRequestDTO message = statusService.updateStatus(statusRequestDTO);
-        return message;
-    }
+//    @PutMapping("/updateStat")
+//    public StatusRequestDto updateStatus(StatusRequestDto statusRequestDTO){
+//        StatusRequestDto message = statusService.updateStatus(statusRequestDTO);
+//        return message;
+//    }
 }

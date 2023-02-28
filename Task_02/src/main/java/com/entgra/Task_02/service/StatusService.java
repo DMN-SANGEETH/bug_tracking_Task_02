@@ -1,7 +1,7 @@
 package com.entgra.Task_02.service;
 
-import com.entgra.Task_02.dto.request.StatusRequestDTO;
+//import com.entgra.Task_02.dto.request.StatusRequestDto;
 
 public interface StatusService {
-    StatusRequestDTO updateStatus(StatusRequestDTO statusRequestDTO);
+//    StatusRequestDto updateStatus(StatusRequestDto statusRequestDTO);
 }

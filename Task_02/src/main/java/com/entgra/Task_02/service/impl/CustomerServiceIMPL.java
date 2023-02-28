@@ -27,9 +27,9 @@ public class CustomerServiceIMPL implements CustomerService {
         Customer customer = modelMapper.map(customerDTO, Customer.class);
         if (!customerRepository.existsById(customer.getCustomer_id())) {
             customerRepository.save(customer);
-            return "Save successfuly";
+            return "Save Successfully";
         } else {
-            throw new DuplicateKeyException("Allreday added");
+            throw new DuplicateKeyException("Allreaday added");
         }
     }
 
@@ -38,7 +38,7 @@ public class CustomerServiceIMPL implements CustomerService {
     public String deleteCustomer(int customerID) {
         if (customerRepository.existsById(customerID)) {
             customerRepository.deleteById(customerID);
-            return "Succesfully deleted" + customerID;
+            return "Successfully deleted" + customerID;
         } else {
             throw new RuntimeException("No customer found");
         }
@@ -47,15 +47,14 @@ public class CustomerServiceIMPL implements CustomerService {
     @Override
     public List<CustomerDTO> getAllData() {
         List<Customer> customerList = customerRepository.findAll();
-        List<CustomerDTO> customerDTOList = customerList.stream()
+        //        Customer allCustomer = modelMapper.map(Customer, customerDTO.class);
+        return customerList.stream()
                 .map(customer -> {
                     CustomerDTO customerDTO = modelMapper.map(customer, CustomerDTO.class);
                     customerDTO.setCustomer_id(customer.getCustomer_id());
                     return customerDTO;
                 })
                 .collect(Collectors.toList());
-//        Customer allCustomer = modelMapper.map(Customer, customerDTO.class);
-        return customerDTOList;
     }
 
     @Override

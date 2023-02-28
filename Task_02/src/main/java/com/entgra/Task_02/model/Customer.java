@@ -16,10 +16,8 @@ public class Customer {
     private String username;
     private String email;
     private String password;
-
-    public Customer() {
-
-    }
+    @OneToMany(mappedBy = "fk_customer_id")
+    private List<Issue> issues;
 
     public int getCustomer_id() {
         return customer_id;
@@ -53,11 +51,12 @@ public class Customer {
         this.password = password;
     }
 
-    public Customer(int customer_id, String username, String email, String password) {
-        this.customer_id = customer_id;
-        this.username = username;
-        this.email = email;
-        this.password = password;
+    public List<Issue> getIssues() {
+        return issues;
+    }
+
+    public void setIssues(List<Issue> issues) {
+        this.issues = issues;
     }
 }
 
